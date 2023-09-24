@@ -10,10 +10,7 @@ const Payment = ({ comic }: Props) => {
   return (
     <Box sx={{ margin: "0 30px" }}>
       <Typography variant="h4">{comic?.title}</Typography>
-      <Typography variant="h5">Precio: {comic?.price}</Typography>
-      <Typography variant="h6">{comic?.description}</Typography>
-
-      
+      <Typography variant="h5">Precio: {comic?.price}</Typography>      
       <Box
         component="img"
         alt={comic?.title}
