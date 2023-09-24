@@ -26,8 +26,6 @@ const Checkout = () => {
         const id = comic?.toString() || "0";
         if (comic) {
           const response = await fetch(`/api/comics/${id}`);
-          const parseRes = await response.json();
-
           if (response.ok) {
             const data = await response.json();
             setData(data);

@@ -6,7 +6,7 @@ type Props = {
   comic: IComic | undefined;
 };
 
-const Payment = ({ comic }: Props) => {
+const Payment = ({ comic }: Props) => {  
   return (
     <Box sx={{ margin: "0 30px" }}>
       <Typography variant="h4">{comic?.title}</Typography>
