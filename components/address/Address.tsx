@@ -29,7 +29,7 @@ const Address: React.FC<Props> = ({
       .min(3, "La dirección debe tener al menos 3 caracteres"),
     address2: yup
       .string()
-      .required() // deberia ser .notRequired()
+      .required("La dirección es obligatoria")
       .min(3, "La dirección debe tener al menos 3 caracteres"),
     city: yup
       .string()

@@ -15,7 +15,7 @@ interface Props {
 
 const CardComponent: FC<Props> = ({ comic, style }) => {
   return (
-    <Card style={style} sx={{ maxHeight: 550 }}>
+    <Card style={style} sx={{ maxHeight: 550, display:"flex", flexDirection:"column",justifyContent: "space-between"}}>
       <Box>
         <CardMedia
           component="img"
@@ -33,7 +33,8 @@ const CardComponent: FC<Props> = ({ comic, style }) => {
         sx={{
           display: "flex",
           justifyContent: "space-between",
-          alignItems: "baseline"
+          alignItems: "baseline",
+          marginBottom: "20px"
         }}
       >
 

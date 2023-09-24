@@ -40,9 +40,9 @@ const ConfirmacionCompra: NextPage = () => {
         </Typography>
       </Box>
 
-      <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+      <Box >
         {data && (
-          <Box>
+          <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", flexDirection:"column" }}>
             <Typography variant="h5">{data?.order.name}</Typography>
             <Box
               component="img"
