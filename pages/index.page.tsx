@@ -1,10 +1,12 @@
 import Head from "next/head";
 import BodySingle from "dh-marvel/components/layouts/body/single/body-single";
 import CardComponent from "dh-marvel/components/card/card";
+import Grid from "@mui/material/Grid";
+import Pagination from "@mui/material/Pagination";
+import Box from "@mui/material/Box";
 import type { GetServerSideProps, NextPage } from "next";
 import { IComicResponse } from "types";
 import { useRouter } from "next/router";
-import { Grid, Pagination, Box } from "@mui/material";
 import { useEffect, useState, ChangeEvent } from "react";
 import { getComicsByPage, getComics } from "dh-marvel/services/marvel/marvel.service";
 

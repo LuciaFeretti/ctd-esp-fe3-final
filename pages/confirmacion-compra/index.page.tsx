@@ -1,11 +1,12 @@
-import { Button, Stack, Grid } from "@mui/material";
+import NextLink from "next/link";
+import ThumbUpIcon from "@mui/icons-material/ThumbUp";
+import Button from "@mui/material/Button";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
 import { useEffect, useState } from "react";
 import { IOrder } from "types";
-import NextLink from "next/link";
 import { useRouter } from "next/router";
 import { NextPage } from "next";
-import { Box, Typography } from "@mui/material";
-import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 
 interface CustomerCheckout {
   nombre: string;
@@ -54,17 +55,13 @@ const ConfirmacionCompra: NextPage = () => {
                 maxHeight: "500px",
                 objectFit: "cover",
               }}
-            /> <hr/>
-            <Typography sx={{ textAlign: "center" }}>Precio: ${data?.order.price}</Typography> <hr/>
+            /> 
+            <Typography sx={{ textAlign: "center" }}>Precio: ${data?.order.price}</Typography> <hr />
             <Typography variant="h6" sx={{ textAlign: "center" }}>Datos personales</Typography>
             <Typography sx={{ textAlign: "center" }}>
               {data?.customer.nombre} {data?.customer.apellido} <br />
               {data?.customer.email}
-            </Typography> <hr/>
-            <Typography variant="h6" sx={{ textAlign: "center" }}>Datos de entrega</Typography>
-            <Typography sx={{ textAlign: "center" }}>
-            </Typography> <hr/>
-            
+            </Typography>             
           </Box>
         )}
       </Box>

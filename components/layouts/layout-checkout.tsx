@@ -1,7 +1,7 @@
 import * as React from "react";
 import { FC, PropsWithChildren } from "react";
-import { Stack } from "@mui/material";
 import Box from "@mui/material/Box";
+import Stack from "@mui/material/Stack";
 import GeneralHeader from "dh-marvel/components/layouts/header/general-header.component";
 import GeneralFooter from "dh-marvel/components/layouts/footer/general-footer.component";
 

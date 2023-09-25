@@ -1,7 +1,6 @@
 import HorizontalLinearStepper from "dh-marvel/components/stepper/Stepper";
-import { getComicsById } from "dh-marvel/services/marvel/marvel.service";
-import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 import { IComic } from "types";
 import Payment from "dh-marvel/components/payment/Payment";
 import Snackbar from "@mui/material/Snackbar";
@@ -9,7 +8,7 @@ import Alert from "@mui/material/Alert";
 import Stepper from "@mui/material/Stepper";
 import Step from "@mui/material/Step";
 import StepLabel from "@mui/material/StepLabel";
-import { Box, Typography } from "@mui/material";
+import Box from "@mui/material/Box";
 
 const steps = ["Datos Personales", "Datos de entrega", "Datos del pago"];
 
@@ -19,6 +18,7 @@ const Checkout = () => {
   const router = useRouter();
   const { comic } = router.query;
   const [data, setData] = useState<IComic | undefined>();
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -30,16 +30,26 @@ const Checkout = () => {
             const data = await response.json();
             setData(data);
           } else {
-            throw new Error("Error al obtener los datos");
+            const errorData = await response.json();
+            if (errorData.error) {
+              setError(errorData.message || "Error desconocido");
+            } else {
+              //throw new Error("Error al obtener los datos");
+              const errorMessage = errorData.message || "Error desconocido";
+              setError(errorMessage);
+              console.log(errorMessage);
+            }
+            
           }
         } else {
           router.push("/");
         }
-      } catch (error) {
-        console.error(error);
+        } catch (error) {
+          console.error(error);
+          setError("Error al obtener los datos"); 
       }
     };
-
+    
     fetchData();
   }, [comic, router]);
 
@@ -69,12 +79,28 @@ const Checkout = () => {
           })}
         </Stepper>
       </Box>
+
       <Box sx={{ display: "flex" }}>
         <HorizontalLinearStepper {...props} />
         <Payment comic={data} />
       </Box>
+
       <Box>
-        {/* SnackBar */}
+        <Snackbar
+          open={!!error}
+          autoHideDuration={6000}
+          onClose={() => setError(null)} 
+          anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+        >
+          <Alert
+            onClose={() => setError(null)}
+            severity="error"
+            sx={{ width: "100%" }}
+          >
+            {error}
+          </Alert>
+        </Snackbar>
+
       </Box>
     </Box>
   );

@@ -1,12 +1,14 @@
 import React from "react";
 import data from "./data.json";
-import { Stack, TextField, Button } from "@mui/material";
-import { DevTool } from "@hookform/devtools";
-import { IAddress, ICard, ICheckout, ICustomer } from "types";
 import Box from "@mui/material/Box";
+import Stack from "@mui/material/Stack";
+import TextField from "@mui/material/TextField";
+import Button from "@mui/material/Button";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm, Controller } from "react-hook-form";
+import { DevTool } from "@hookform/devtools";
+import { ICard } from "types";
 
 type Props = {
   handleBack: () => void;
@@ -75,12 +77,14 @@ const Details: React.FC<Props> = ({
                   helperText={
                     errors[item.name as keyof FormData]?.message || ""
                   }
+                  type={item.name === "cvc" ? "password" : "text"}
                   {...field}
                 />
               )}
             />
           ))}
         </Stack>
+
         <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
           <Button color="inherit" onClick={handleBack} sx={{ mr: 1 }}>
             Atras
@@ -89,7 +93,6 @@ const Details: React.FC<Props> = ({
           <Button type="submit">Pagar</Button>
         </Box>
       </form>
-
       <DevTool control={control} />
     </Box>
   );

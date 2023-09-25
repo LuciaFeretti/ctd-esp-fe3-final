@@ -1,11 +1,10 @@
 import * as React from "react";
 import { useState } from "react";
 import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
 import Personal from "../personal/Personal";
-import { ICard, ICheckout } from "types";
 import Address from "../address/Address";
 import Details from "../details/Details";
+import { ICard, ICheckout } from "types";
 import { fetchCheckout } from "dh-marvel/services/checkout/checkout.service";
 import { useRouter } from "next/router";
 import { CheckoutInput } from "dh-marvel/features/checkout/checkout.types";
@@ -38,6 +37,7 @@ export default function HorizontalLinearStepper({
   setSkipped,
   data: comic,
 }: any) {
+  
   const [data, setData] = useState<ICheckout>(info);
   const router = useRouter();
 

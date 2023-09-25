@@ -3,9 +3,9 @@ import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { faqsData } from "dh-marvel/components/faqs/faqsData";
-import { Box } from "@mui/material";
 
 const PreguntasFrecuentes = () => {
   return (

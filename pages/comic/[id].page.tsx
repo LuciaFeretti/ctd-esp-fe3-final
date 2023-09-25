@@ -1,9 +1,11 @@
-import { Box, Button, Typography } from "@mui/material";
+import React from "react";
+import NextLink from "next/link";
+import Box from "@mui/material/Box"
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
 import { getComic, getComics } from "dh-marvel/services/marvel/marvel.service";
 import { GetStaticPaths, GetStaticProps, NextPage } from "next";
-import React from "react";
 import { IComic, IComicResponse } from "types";
-import NextLink from "next/link";
 
 interface Props {
   comic: IComic;
@@ -13,8 +15,8 @@ const TEXT = "No tiene descripción :(";
 
 const Comic: NextPage<Props> = ({ comic }) => {
   function obtenerNumeroDeURL(url: string): string | null {
-    const match = url.match(/\/(\d+)$/); // Buscar una serie de dígitos al final de la URL
-    return match ? match[1] : null; // Devolver el número encontrado o null si no se encuentra
+    const match = url.match(/\/(\d+)$/);
+    return match ? match[1] : null;
   }
 
   return (
@@ -24,12 +26,12 @@ const Comic: NextPage<Props> = ({ comic }) => {
       >
         <Typography variant="h5">{comic?.title}</Typography>
       </Box>
+
       <Box
         sx={{
           display: "flex",
           justifyContent: "center",
-        }}
-      >
+        }}>
         <Box
           component="img"
           alt={comic?.title}
@@ -39,8 +41,8 @@ const Comic: NextPage<Props> = ({ comic }) => {
             width: "500px",
             height: "500px",
             objectFit: "cover",
-          }}
-        />
+          }}/>
+        
         <Box sx={{ marginLeft: "50px" }}>
           <Typography sx={{ width: "500px", marginBottom: "10px" }}>
             <strong>Descripcion:</strong> <br />
@@ -48,13 +50,16 @@ const Comic: NextPage<Props> = ({ comic }) => {
               ? TEXT
               : comic?.description}
           </Typography>
+
           <Typography>
             <strong>Precio anterior:</strong> $ {comic?.oldPrice}
           </Typography>
+
           <Typography>
             <strong>Precio actual: </strong> $
             {comic?.price}
           </Typography>
+
           <Box
             sx={{
               margin: "20px 0",

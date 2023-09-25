@@ -1,11 +1,9 @@
-import { Box, Typography } from "@mui/material";
-import {
-  getCharacter,
-  getCharacters,
-} from "dh-marvel/services/marvel/marvel.service";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import NextLink from "next/link";
+import { getCharacter, getCharacters } from "dh-marvel/services/marvel/marvel.service";
 import { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import { ICharacter, ICharacterResponse } from "types";
-import NextLink from "next/link";
 
 interface Props {
   personaje: ICharacter;
@@ -22,6 +20,7 @@ const Personajes: NextPage<Props> = ({ personaje }) => {
       <Typography variant="h3" sx={{ textAlign: "center", margin: "10px 0" }}>
         {personaje?.name}
       </Typography>
+
       <Box sx={{ display: "flex" }}>
         <Box
           component="img"
@@ -34,12 +33,14 @@ const Personajes: NextPage<Props> = ({ personaje }) => {
             objectFit: "cover",
           }}
         />
+
         <Typography sx={{ width: "500px", marginLeft: "20px" }}>
           {personaje?.description === "" || personaje?.description === null
             ? "No tiene descripcion"
             : personaje?.description}
         </Typography>
       </Box>
+      
       <Typography sx={{ margin: "20px 0 -15px 0" }}>Otros comics de {personaje?.name}:</Typography>
       <ul>
         {personaje?.comics?.items.slice(0, 6).map((comic, key) => (

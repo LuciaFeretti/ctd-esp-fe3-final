@@ -1,10 +1,12 @@
 import React from "react";
 import data from "./data.json";
-import { Stack, TextField, Button } from "@mui/material";
-import { DevTool } from "@hookform/devtools";
-import { ICheckout, ICustomer } from "types";
 import Box from "@mui/material/Box";
+import Stack from "@mui/material/Stack";
+import TextField from "@mui/material/TextField";
+import Button from "@mui/material/Button";
 import * as yup from "yup";
+import { DevTool } from "@hookform/devtools";
+import { ICustomer } from "types";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm, Controller } from "react-hook-form";
 
@@ -27,8 +29,15 @@ const Personal: React.FC<Props> = ({
 }: Props) => {
   const shema = yup
     .object({
-      nombre: yup.string().required("El nombre es obligatorio"),
-      apellido: yup.string().required("El apellido es obligario"),
+      nombre: yup
+        .string()
+        .required("El nombre es obligatorio")
+        .min(3, "El nombre debe tener al menos 3 caracteres")
+        ,
+      apellido: yup
+        .string()
+        .required("El apellido es obligario")
+        .min(3, "El apellido debe tener al menos 3 caracteres"),
       email: yup
         .string()
         .email("No es un email válido")
@@ -77,6 +86,7 @@ const Personal: React.FC<Props> = ({
             />
           ))}
         </Stack>
+        
         <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
           <Box sx={{ flex: "1 1 auto" }} />
           <Button type="submit">Siguiente</Button>
